@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<title>Itinerario de Viaje</title>
+		<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+		<style>
+		.material-symbols-outlined {
+		  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+		}
+		</style>
+		<script id="tailwind-config">
+		tailwind.config = {
+		  darkMode: "class",
+		  theme: {
+			extend: {
+			  colors: {
+				"primary": "#4A90E2",
+				"secondary": "#F5A623",
+				"background-light": "#F4F4F8",
+				"background-dark": "#101922",
+				"text-light-primary": "#333333",
+				"text-light-secondary": "#888888",
+				"text-dark-primary": "#FFFFFF",
+				"text-dark-secondary": "#92adc9",
+				"card-light": "#FFFFFF",
+				"card-dark": "#1c2c3a",
+			  },
+			  fontFamily: {
+				"display": ["Plus Jakarta Sans", "sans-serif"]
+			  },
+			  borderRadius: {
+				"DEFAULT": "0.5rem",
+				"lg": "0.75rem",
+				"xl": "1rem",
+				"full": "9999px"
+			  },
+			},
+		  },
+		}
+		</script>
+		<style>
+		body, html {
+		  height: 100dvh;
+		  margin: 0;
+		  padding: 0;
+		  overflow: hidden;
+		}
+		</style>
+	</head>
+	<body class="font-display bg-background-light dark:bg-background-dark">
+		<div class="relative flex h-screen w-full flex-col">
+			<div class="sticky top-0 z-10 flex items-center bg-background-light/80 dark:bg-background-dark/80 p-4 pb-2 backdrop-blur-sm">
+				<button id="btnBack" class="flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full text-text-light-primary dark:text-text-dark-primary">
+					<span class="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
+				</button>
+				<h1 class="flex-1 text-center text-lg font-bold leading-tight tracking-[-0.015em] text-text-light-primary dark:text-text-dark-primary">Día 1: 4 Dic, Jueves</h1>
+				<button id="btnNext" class="flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full text-text-light-primary dark:text-text-dark-primary">
+					<span class="material-symbols-outlined text-2xl">arrow_forward_ios</span>
+				</button>
+			</div>
+			<div class="h-[40vh] shrink-0 px-4 pt-2">
+				<div id="map" class="h-full w-full rounded-xl"/>
+			</div>
+			<div class="overflow-y-auto pt-2" style="max-height: calc(100dvh - 40vh - 64px);">
+				<h2 class="px-4 pb-2 pt-6 text-xl font-bold leading-tight tracking-[-0.015em] text-text-light-primary dark:text-text-dark-primary">Itinerario: Llegada y tarde en Dordrecht</h2>
+				<div class="space-y-3 p-4 pt-2">
+
+					<div class="flex min-h-[72px] cursor-pointer flex-col gap-3 rounded-lg bg-card-light p-3 shadow-sm dark:bg-card-dark item-daily">
+						<div class="flex items-start gap-4">
+							<div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/20 text-primary">
+								<span class="material-symbols-outlined text-2xl">flight</span>
+							</div>
+							<div class="flex flex-1 flex-col justify-center">
+								<p class="font-medium leading-normal text-text-light-primary dark:text-text-dark-primary">Vuelo de ida a Róterdam</p>
+								<p class="text-sm font-normal leading-normal text-text-light-secondary dark:text-text-dark-secondary">Sevilla (SVQ) → Róterdam (RTM)</p>
+							</div>
+							<div class="text-text-light-secondary dark:text-text-dark-secondary">
+								<span class="material-symbols-outlined">more_vert</span>
+							</div>
+						</div>
+						<div class="ml-1 flex flex-col gap-2 border-l-2 border-dashed border-primary/30 pl-5">
+							<div class="flex items-center gap-2">
+								<span class="material-symbols-outlined text-base text-text-light-secondary dark:text-text-dark-secondary">schedule</span>
+								<p class="text-xs text-text-light-secondary dark:text-text-dark-secondary">Llegada: 14:25</p>
+							</div>
+							<div class="flex items-center gap-2">
+								<span class="material-symbols-outlined text-base text-text-light-secondary dark:text-text-dark-secondary">confirmation_number</span>
+								<p class="text-xs text-text-light-secondary dark:text-text-dark-secondary">Transavia - HV6852</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="flex min-h-[72px] cursor-pointer items-center gap-4 rounded-lg bg-card-light p-3 shadow-sm dark:bg-card-dark item-daily">
+						<div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/20 text-primary">
+							<span class="material-symbols-outlined text-2xl">directions_boat</span>
+						</div>
+						<div class="flex flex-1 flex-col justify-center">
+							<p class="font-medium leading-normal text-text-light-primary dark:text-text-dark-primary">Waterbus a Dordrecht</p>
+							<p class="text-sm font-normal leading-normal text-text-light-secondary dark:text-text-dark-secondary">15:30: Erasmusbrug a Merwekade (Línea 20, 58 min)</p>
+						</div>
+						<div class="text-text-light-secondary dark:text-text-dark-secondary">
+							<span class="material-symbols-outlined">more_vert</span>
+						</div>
+					</div>
+					<div class="flex min-h-[72px] cursor-pointer items-center gap-4 rounded-lg bg-card-light p-3 shadow-sm dark:bg-card-dark item-daily">
+						<div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/20 text-primary">
+							<span class="material-symbols-outlined text-2xl">fort</span>
+						</div>
+						<div class="flex flex-1 flex-col justify-center">
+							<p class="font-medium leading-normal text-text-light-primary dark:text-text-dark-primary">Groothoofdspoort</p>
+							<p class="text-sm font-normal leading-normal text-text-light-secondary dark:text-text-dark-secondary">Puerta histórica de la ciudad junto al agua</p>
+						</div>
+						<div class="text-text-light-secondary dark:text-text-dark-secondary">
+							<span class="material-symbols-outlined">more_vert</span>
+						</div>
+					</div>
+					<div class="flex min-h-[72px] cursor-pointer items-center gap-4 rounded-lg bg-card-light p-3 shadow-sm dark:bg-card-dark item-daily">
+						<div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/20 text-primary">
+							<span class="material-symbols-outlined text-2xl">church</span>
+						</div>
+						<div class="flex flex-1 flex-col justify-center">
+							<p class="font-medium leading-normal text-text-light-primary dark:text-text-dark-primary">Grote Kerk (Dordrecht Minster)</p>
+							<p class="text-sm font-normal leading-normal text-text-light-secondary dark:text-text-dark-secondary">Caminar por el centro histórico</p>
+						</div>
+						<div class="text-text-light-secondary dark:text-text-dark-secondary">
+							<span class="material-symbols-outlined">more_vert</span>
+						</div>
+					</div>
+					<div class="flex min-h-[72px] cursor-pointer items-center gap-4 rounded-lg bg-card-light p-3 shadow-sm dark:bg-card-dark item-daily">
+						<div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/20 text-primary">
+							<span class="material-symbols-outlined text-2xl">museum</span>
+						</div>
+						<div class="flex flex-1 flex-col justify-center">
+							<p class="font-medium leading-normal text-text-light-primary dark:text-text-dark-primary">Paseo por la ciudad</p>
+							<p class="text-sm font-normal leading-normal text-text-light-secondary dark:text-text-dark-secondary">Pelserbrug, Ayuntamiento, Estatuas de Witt</p>
+						</div>
+						<div class="text-text-light-secondary dark:text-text-dark-secondary">
+							<span class="material-symbols-outlined">more_vert</span>
+						</div>
+					</div>
+					<div class="flex min-h-[72px] cursor-pointer items-center gap-4 rounded-lg bg-card-light p-3 shadow-sm dark:bg-card-dark item-daily">
+						<div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/20 text-primary">
+							<span class="material-symbols-outlined text-2xl">dinner_dining</span>
+						</div>
+						<div class="flex flex-1 flex-col justify-center">
+							<p class="font-medium leading-normal text-text-light-primary dark:text-text-dark-primary">Cena en Voorstraat</p>
+							<p class="text-sm font-normal leading-normal text-text-light-secondary dark:text-text-dark-secondary">Explorar opciones para cenar</p>
+						</div>
+						<div class="text-text-light-secondary dark:text-text-dark-secondary">
+							<span class="material-symbols-outlined">more_vert</span>
+						</div>
+					</div>
+					<div class="flex min-h-[72px] cursor-pointer items-center gap-4 rounded-lg bg-card-light p-3 shadow-sm dark:bg-card-dark item-daily">
+						<div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/20 text-primary">
+							<span class="material-symbols-outlined text-2xl">train</span>
+						</div>
+						<div class="flex flex-1 flex-col justify-center">
+							<p class="font-medium leading-normal text-text-light-primary dark:text-text-dark-primary">Regreso a Róterdam</p>
+							<p class="text-sm font-normal leading-normal text-text-light-secondary dark:text-text-dark-secondary">Tren desde Dordrecht a Rotterdam Blaak</p>
+						</div>
+						<div class="text-text-light-secondary dark:text-text-dark-secondary">
+							<span class="material-symbols-outlined">more_vert</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+		  // --- BOTONES ATRÁS / SIGUIENTE ---
+		  document.getElementById("btnBack").addEventListener("click", () => {
+			window.location.href = "menu.html";
+		  });
+
+		  document.getElementById("btnNext").addEventListener("click", () => {
+			window.location.href = "dia2.html";
+		  });
+
+		  // --- MAPA ---
+		  let map;
+		  let markers = {};
+
+		  function initMap() {
+			// Centro inicial del mapa (Dordrecht)
+			const center = { lat: 51.8143, lng: 4.6650 };
+
+			map = new google.maps.Map(document.getElementById("map"), {
+			  center,
+			  zoom: 14,
+			  mapId: "DEMO_MAP_ID", // opcional
+			  gestureHandling: "greedy"
+			});
+
+			// --- MARCADORES por ID ---
+			const points = {
+			  aeropuerto: { lat: 51.95205915734099, lng: 4.436826734943888 },
+			  waterbus: { lat: 51.908642146057915, lng: 4.48218433942879 },
+			  groothoofd: { lat: 51.81966717895599, lng: 4.6703381468890575 },
+			  grotekerk: { lat: 51.81437571500697, lng: 4.6603455074605575 },
+			  paseo: { lat: 51.81404108690083, lng: 4.664692994019252 },
+			  cena: { lat: 51.81508731461512, lng: 4.667684668762707 },
+			  regreso: { lat: 51.808204653359475, lng: 4.666535894730027 }
+			};
+			
+			// Ruta del icono PNG
+			const customIcon = {
+			  url: "images/pin.gif",
+			  scaledSize: new google.maps.Size(40, 40),
+			  anchor: new google.maps.Point(20, 40)
+			};
+
+			// Crear marcadores
+			for (const key in points) {
+			  markers[key] = new google.maps.Marker({
+				position: points[key],
+				map,
+				title: key,
+				icon: customIcon
+			  });
+			}
+
+			// --- ASOCIAR DIVS DEL ITINERARIO ---
+			const items = document.querySelectorAll(".item-daily");
+
+			const order = [
+			  "aeropuerto",
+			  "waterbus",
+			  "groothoofd",
+			  "grotekerk",
+			  "paseo",
+			  "cena",
+			  "regreso"
+			];
+
+			items.forEach((div, index) => {
+			  const key = order[index];
+			  if (!key) return;
+
+			  div.addEventListener("click", () => {
+				map.panTo(markers[key].getPosition());
+				map.setZoom(16);
+			  });
+			});
+		  }
+		</script>
+		<!-- Google Maps JS API -->
+		<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzB-gKttoRo6blZCCWk6IAzKgUaZpuvIg&loading=async&callback=initMap"></script>
+	</body>
+</html>
